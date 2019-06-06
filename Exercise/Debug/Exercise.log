@@ -1,1 +1,1 @@
-﻿
+﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(411,5): warning MSB8028: 中間ディレクトリ (Debug\) に別のプロジェクト (Excrcise.vcxproj, Project1.vcxproj) と共有されているファイルが含まれています。これにより、クリーンしてリビルド動作が適切に行われない可能性があります。

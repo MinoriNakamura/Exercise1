@@ -33,6 +33,7 @@ INT WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInst, LPSTR szStr, INT iCmdSh
 	UpdateWindow(hWnd);
 
 	//メッセージループ
+	timeBeginPeriod(1);
 	ZeroMemory(&msg, sizeof(msg));
 	while (msg.message != WM_QUIT)
 	{
@@ -45,7 +46,10 @@ INT WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInst, LPSTR szStr, INT iCmdSh
 		{
 
 		}
+		Sleep(1);
 	}
+	timeEndPeriod(1);
+	
 	//アプリケーションを終了する
 	return(INT)msg.wParam;
 }

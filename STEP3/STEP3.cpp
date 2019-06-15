@@ -85,6 +85,7 @@ INT WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInst, LPSTR szStr, INT iCmdSh
 		&pTexture);
 
 	//メッセージループ
+	timeBeginPeriod(1);
 	ZeroMemory(&msg, sizeof(msg));
 	while (msg.message != WM_QUIT)
 	{
@@ -121,7 +122,10 @@ INT WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInst, LPSTR szStr, INT iCmdSh
 				SyncPrev = SyncCurr;//ゲームの処理
 			}
 		}
+		Sleep(1);
 	}
+	timeEndPeriod(1);
+
 	pD3Device->Release();
 	pD3Device = nullptr;
 	pD3d->Release();

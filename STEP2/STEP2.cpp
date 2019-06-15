@@ -11,7 +11,7 @@
 //
 LPDIRECT3D9 pD3d;
 LPDIRECT3DDEVICE9 pD3Device;
-LPDIRECT3DTEXTURE9 pTexture;
+//LPDIRECT3DTEXTURE9 pTexture;
 LPD3DXFONT m_pFont;//フォント（描画ブラシ）のオブジェクト
 D3DPRESENT_PARAMETERS D3dPresentParameters;
 // fPosX = 270, fPosY = 180;//左上を（０，０）とし、270,180の点に描画
@@ -105,9 +105,9 @@ INT WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInst, LPSTR szStr, INT iCmdSh
 				//テクスチャ貼り付け開始
 				pD3Device->BeginScene();
 
-				//テクスチャの貼り付け
-				//ピカチュウをかけといわれる
-				pD3Device->SetTexture(0, pTexture);
+				////テクスチャの貼り付け
+				////ピカチュウをかけといわれる
+				//pD3Device->SetTexture(0, pTexture);
 				//いわれた場所に、言われた大きさで書き始める
 				pD3Device->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 1, v, sizeof(CUSTOMVERTEX));
 
@@ -121,8 +121,10 @@ INT WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInst, LPSTR szStr, INT iCmdSh
 				SyncPrev = SyncCurr;
 			}
 		}
-		timeEndPeriod(1);
+		Sleep(1);
 	}
+	timeEndPeriod(1);
+
 	pD3Device->Release();
 	pD3Device = nullptr;
 	pD3d->Release();
@@ -171,7 +173,7 @@ HRESULT BuildDxDevice(HWND hWnd, const TCHAR* filepath) {
 }
 
 //ダイレクト３D初期化関数
-HRESULT InitD3d(HWND hWnd, const TCHAR * filepath)
+HRESULT InitD3d(HWND hWnd, const TCHAR* filepath)
 {
 	//Direct３Dオブジェクトの作成
 	if (NULL == (pD3d = Direct3DCreate9(D3D_SDK_VERSION)))
@@ -195,17 +197,18 @@ HRESULT InitD3d(HWND hWnd, const TCHAR * filepath)
 			return E_FAIL;
 		}
 	}
-
-	//テクスチャオブジェクトの作成
-	if (FAILED(D3DXCreateTextureFromFileEx(pD3Device, filepath, 100, 100, 0, 0, D3DFMT_UNKNOWN,
-		D3DPOOL_DEFAULT, D3DX_FILTER_NONE, D3DX_DEFAULT,
-		0xff000000, NULL, NULL, &pTexture)))
-	{
-		MessageBox(0, "テクスチャの作成に失敗しました", "", MB_OK);
-		return E_FAIL;
-	}
-	return S_OK;
 }
+
+//	//テクスチャオブジェクトの作成
+//	if (FAILED(D3DXCreateTextureFromFileEx(pD3Device, filepath, 100, 100, 0, 0, D3DFMT_UNKNOWN,
+//		D3DPOOL_DEFAULT, D3DX_FILTER_NONE, D3DX_DEFAULT,
+//		0xff000000, NULL, NULL, &pTexture)))
+//	{
+//		MessageBox(0, "テクスチャの作成に失敗しました", "", MB_OK);
+//		return E_FAIL;
+//	}
+//	return S_OK;
+//}
 
 void InitPresentParameters(HWND hWnd) {
 	//WindowMode

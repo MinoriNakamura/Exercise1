@@ -14,8 +14,6 @@ LPDIRECT3DDEVICE9 pD3Device;
 LPDIRECT3DTEXTURE9 pTexture;
 LPD3DXFONT m_pFont;//フォント（描画ブラシ）のオブジェクト
 D3DPRESENT_PARAMETERS D3dPresentParameters;
-// fPosX = 270, fPosY = 180;//左上を（０，０）とし、270,180の点に描画
-
 
 
 LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);//ウィンドウプロシージャー関数のプロトタイプ宣言
@@ -45,10 +43,7 @@ INT WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInst, LPSTR szStr, INT iCmdSh
 {
 	DWORD SyncPrev = timeGetTime();
 	DWORD SyncCurr;
-	/*D3DXCreateTextureFromFile(
-		pD3Device,
-		"Blank.jpg",
-		&dx9.pTexture[_T("test")]);*/
+	
 	HWND hWnd = NULL;
 	MSG msg;
 	//ウィンドウの初期化
@@ -98,7 +93,6 @@ INT WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInst, LPSTR szStr, INT iCmdSh
 		{
 			SyncCurr = timeGetTime();
 			//1秒間に60回この中に入る
-			Sleep(1);
 			if (SyncCurr - SyncPrev >= 1000 / 60)
 			{
 				//ウィンドウを黒色でクリア
@@ -169,7 +163,7 @@ HRESULT BuildDxDevice(HWND hWnd, const TCHAR* filepath) {
 		return E_FAIL;
 	}
 	pD3Device->SetRenderState(D3DRS_ALPHABLENDENABLE, true);
-	pD3Device->SetFVF(D3DFVF_XYZRHW | D3DFVF_DIFFUSE | D3DFVF_TEX1);
+	pD3Device->SetFVF(FVF_CUSTOM);
 	return S_OK;
 }
 

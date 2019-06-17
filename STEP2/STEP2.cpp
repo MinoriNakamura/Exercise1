@@ -8,15 +8,11 @@
 #pragma comment (lib,"dinput8.lib")
 #pragma comment (lib,"dxguid.lib")
 #pragma comment (lib,"winmm.lib")
-//
+
 LPDIRECT3D9 pD3d;
 LPDIRECT3DDEVICE9 pD3Device;
-//LPDIRECT3DTEXTURE9 pTexture;
 LPD3DXFONT m_pFont;//フォント（描画ブラシ）のオブジェクト
 D3DPRESENT_PARAMETERS D3dPresentParameters;
-// fPosX = 270, fPosY = 180;//左上を（０，０）とし、270,180の点に描画
-
-
 
 LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);//ウィンドウプロシージャー関数のプロトタイプ宣言
 HRESULT BuildDxDevice(HWND, const TCHAR*);//プロトタイプ宣言
@@ -30,7 +26,7 @@ struct CUSTOMVERTEX {
 	float	tu, tv;	//　テクスチャ座標
 };
 
-#define FVF_CUSTOM ( D3DFVF_XYZRHW | D3DFVF_DIFFUSE | D3DFVF_TEX1 )
+//#define FVF_CUSTOM ( D3DFVF_XYZRHW | D3DFVF_DIFFUSE | D3DFVF_TEX1 )
 
 CUSTOMVERTEX v[3] =
 {
@@ -78,11 +74,6 @@ INT WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInst, LPSTR szStr, INT iCmdSh
 
 	BuildDxDevice(hWnd, "Blank.jpg");
 
-	/*D3DXCreateTextureFromFile(
-		pD3Device,
-		"Blank.jpg",
-		&pTexture);*/
-
 		//メッセージループ
 	timeBeginPeriod(1);
 	ZeroMemory(&msg, sizeof(msg));
@@ -105,9 +96,8 @@ INT WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInst, LPSTR szStr, INT iCmdSh
 				//テクスチャ貼り付け開始
 				pD3Device->BeginScene();
 
-				////テクスチャの貼り付け
-				////ピカチュウをかけといわれる
-				//pD3Device->SetTexture(0, pTexture);
+				//テクスチャの貼り付け
+				//ピカチュウをかけといわれる
 				//いわれた場所に、言われた大きさで書き始める
 				pD3Device->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 1, v, sizeof(CUSTOMVERTEX));
 
@@ -198,17 +188,6 @@ HRESULT InitD3d(HWND hWnd, const TCHAR* filepath)
 		}
 	}
 }
-
-//	//テクスチャオブジェクトの作成
-//	if (FAILED(D3DXCreateTextureFromFileEx(pD3Device, filepath, 100, 100, 0, 0, D3DFMT_UNKNOWN,
-//		D3DPOOL_DEFAULT, D3DX_FILTER_NONE, D3DX_DEFAULT,
-//		0xff000000, NULL, NULL, &pTexture)))
-//	{
-//		MessageBox(0, "テクスチャの作成に失敗しました", "", MB_OK);
-//		return E_FAIL;
-//	}
-//	return S_OK;
-//}
 
 void InitPresentParameters(HWND hWnd) {
 	//WindowMode

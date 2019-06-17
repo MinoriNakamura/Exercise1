@@ -111,7 +111,6 @@ INT WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInst, LPSTR szStr, INT iCmdSh
 		{
 			SyncCurr = timeGetTime();
 			//1秒間に60回この中に入る
-			Sleep(1);
 			if (SyncCurr - SyncPrev >= 1000 / 60)
 			{
 				//ウィンドウを黒色でクリア
@@ -171,8 +170,10 @@ INT WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInst, LPSTR szStr, INT iCmdSh
 
 			}
 		}
-		
+		Sleep(1);
 	}
+	timeEndPeriod(1);
+
 	pD3Device->Release();
 	pD3Device = nullptr;
 	pD3d->Release();

@@ -26,8 +26,6 @@ struct CUSTOMVERTEX {
 	float	tu, tv;	//　テクスチャ座標
 };
 
-//#define FVF_CUSTOM ( D3DFVF_XYZRHW | D3DFVF_DIFFUSE | D3DFVF_TEX1 )
-
 CUSTOMVERTEX v[3] =
 {
 {10, 10, 0.0f, 1.0f, 0xffff00ff, 0.0f, 0.0f},
@@ -40,10 +38,7 @@ INT WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInst, LPSTR szStr, INT iCmdSh
 {
 	DWORD SyncPrev = timeGetTime();
 	DWORD SyncCurr;
-	/*D3DXCreateTextureFromFile(
-		pD3Device,
-		"Blank.jpg",
-		&dx9.pTexture[_T("test")]);*/
+	
 	HWND hWnd = NULL;
 	MSG msg;
 	//ウィンドウの初期化
@@ -96,7 +91,6 @@ INT WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInst, LPSTR szStr, INT iCmdSh
 				//テクスチャ貼り付け開始
 				pD3Device->BeginScene();
 
-				//テクスチャの貼り付け
 				//ピカチュウをかけといわれる
 				//いわれた場所に、言われた大きさで書き始める
 				pD3Device->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 1, v, sizeof(CUSTOMVERTEX));
@@ -158,7 +152,7 @@ HRESULT BuildDxDevice(HWND hWnd, const TCHAR* filepath) {
 		return E_FAIL;
 	}
 	pD3Device->SetRenderState(D3DRS_ALPHABLENDENABLE, true);
-	pD3Device->SetFVF(D3DFVF_XYZRHW | D3DFVF_DIFFUSE | D3DFVF_TEX1);
+	pD3Device->SetFVF(D3DFVF_XYZRHW | D3DFVF_DIFFUSE);
 	return S_OK;
 }
 

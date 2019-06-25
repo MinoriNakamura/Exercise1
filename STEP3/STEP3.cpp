@@ -3,12 +3,6 @@
 #include <d3dx9.h>
 #include <d3d9.h>
 
-#pragma comment (lib,"d3d9.lib")
-#pragma comment (lib,"d3dx9.lib")
-#pragma comment (lib,"dinput8.lib")
-#pragma comment (lib,"dxguid.lib")
-#pragma comment (lib,"winmm.lib")
-
 LPDIRECT3D9 pD3d;
 LPDIRECT3DDEVICE9 pD3Device;
 LPDIRECT3DTEXTURE9 pTexture;
@@ -32,10 +26,10 @@ struct CUSTOMVERTEX {
 
 CUSTOMVERTEX v[4] =
 {
-{ 10,  10, 0.0f, 1.0f, 0xffffffff, 0.0f, 0.0f},
-{200,  10, 0.0f, 1.0f, 0xffffffff, 1.0f, 0},
+{10,  10, 0.0f, 1.0f, 0xffffffff, 0.0f, 0.0f},
+{200,  10, 0.0f, 1.0f, 0xffffffff, 1.0f, 0.0f},
 {200, 200, 0.0f, 1.0f, 0xffffffff, 1.0f, 1.0f},
-{ 10, 200,0.0f,1.0f,0xffffffff,0.0f,1.0f}
+{10, 200,0.0f,1.0f,0xffffffff,0.0f,1.0f}
 };
 
 //アプリケーションのエントリー関数
@@ -222,3 +216,4 @@ void InitPresentParameters(HWND hWnd) {
 	D3dPresentParameters.FullScreen_RefreshRateInHz = 0;
 	D3dPresentParameters.PresentationInterval = D3DPRESENT_INTERVAL_IMMEDIATE;
 }
+

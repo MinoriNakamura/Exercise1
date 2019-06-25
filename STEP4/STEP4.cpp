@@ -3,13 +3,6 @@
 #include <d3dx9.h>
 #include <d3d9.h>
 #include <dinput.h>
-//
-#pragma comment (lib,"d3d9.lib")
-#pragma comment (lib,"d3dx9.lib")
-#pragma comment (lib,"dinput8.lib")
-#pragma comment (lib,"dxguid.lib")
-#pragma comment (lib,"winmm.lib")
-
 
 LPDIRECT3D9 pD3d;
 LPDIRECT3DDEVICE9 pD3Device;
@@ -53,10 +46,7 @@ INT WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInst, LPSTR szStr, INT iCmdSh
 {
 	DWORD SyncPrev = timeGetTime();
 	DWORD SyncCurr;
-	/*D3DXCreateTextureFromFile(
-		pD3Device,
-		"Blank.jpg",
-		&dx9.pTexture[_T("test")]);*/
+
 	HWND hWnd = NULL;
 	MSG msg;
 	//ウィンドウの初期化

@@ -1,17 +1,9 @@
 
 #include <windows.h>
-#include <d3dx9.h>
 #include <d3d9.h>
-
-#pragma comment (lib,"d3d9.lib")
-#pragma comment (lib,"d3dx9.lib")
-#pragma comment (lib,"dinput8.lib")
-#pragma comment (lib,"dxguid.lib")
-#pragma comment (lib,"winmm.lib")
 
 LPDIRECT3D9 pD3d;
 LPDIRECT3DDEVICE9 pD3Device;
-LPD3DXFONT m_pFont;//フォント（描画ブラシ）のオブジェクト
 D3DPRESENT_PARAMETERS D3dPresentParameters;
 
 LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);//ウィンドウプロシージャー関数のプロトタイプ宣言
@@ -23,14 +15,13 @@ struct CUSTOMVERTEX {
 	float	x, y, z;	// 頂点座標
 	float	rhw;	// 除算数
 	DWORD	Color;	// 頂点の色
-	float	tu, tv;	//　テクスチャ座標
 };
 
 CUSTOMVERTEX v[3] =
 {
-{10, 10, 0.0f, 1.0f, 0xffff00ff, 0.0f, 0.0f},
-{200, 10, 0.0f, 1.0f, 0xffffffff, 1.0f, 0},
-{200, 200, 0.0f, 1.0f, 0x0ff00fff, 1.0f, 1.0f}
+{10, 10, 0.0f, 1.0f, 0xffff00ff},
+{200, 10, 0.0f, 1.0f, 0xffffffff},
+{200, 200, 0.0f, 1.0f, 0x0ff00fff}
 };
 
 //アプリケーションのエントリー関数
@@ -88,14 +79,14 @@ INT WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInst, LPSTR szStr, INT iCmdSh
 			{
 				//ウィンドウを黒色でクリア
 				pD3Device->Clear(0, NULL, D3DCLEAR_TARGET, D3DCOLOR_XRGB(0x00, 0x00, 0x00), 1.0, 0);
-				//テクスチャ貼り付け開始
+				//貼り付け開始
 				pD3Device->BeginScene();
 
 				//ピカチュウをかけといわれる
 				//いわれた場所に、言われた大きさで書き始める
 				pD3Device->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 1, v, sizeof(CUSTOMVERTEX));
 
-				//テクスチャの貼り付け終了
+				//貼り付け終了
 				//書き終わって、チョークを置く
 				pD3Device->EndScene();
 				//ウィンドウに表示

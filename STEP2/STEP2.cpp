@@ -79,18 +79,15 @@ INT WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInst, LPSTR szStr, INT iCmdSh
 			{
 				//ウィンドウを黒色でクリア
 				pD3Device->Clear(0, NULL, D3DCLEAR_TARGET, D3DCOLOR_XRGB(0x00, 0x00, 0x00), 1.0, 0);
-				//貼り付け開始
+				
 				pD3Device->BeginScene();
 
-				//ピカチュウをかけといわれる
 				//いわれた場所に、言われた大きさで書き始める
 				pD3Device->DrawPrimitiveUP(D3DPT_TRIANGLEFAN, 1, v, sizeof(CUSTOMVERTEX));
 
-				//貼り付け終了
-				//書き終わって、チョークを置く
 				pD3Device->EndScene();
+				
 				//ウィンドウに表示
-				//書いたからみて！！
 				pD3Device->Present(0, 0, 0, 0);
 
 				SyncPrev = SyncCurr;

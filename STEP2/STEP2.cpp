@@ -169,6 +169,7 @@ HRESULT InitD3d(HWND hWnd, const TCHAR* filepath)
 			return E_FAIL;
 		}
 	}
+	return S_OK;
 }
 
 void InitPresentParameters(HWND hWnd) {

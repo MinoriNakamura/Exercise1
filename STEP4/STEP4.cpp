@@ -13,8 +13,6 @@ LPDIRECTINPUTDEVICE8 pKeyDevice = NULL;//DirectInputデバイスオブジェクトのポイン
 D3DPRESENT_PARAMETERS D3dPresentParameters;
 // fPosX = 270, fPosY = 180;//左上を（０，０）とし、270,180の点に描画
 
-
-
 LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);//ウィンドウプロシージャー関数のプロトタイプ宣言
 HRESULT BuildDxDevice(HWND, const TCHAR*);//プロトタイプ宣言
 void InitPresentParameters(HWND);
@@ -22,7 +20,10 @@ HRESULT InitD3d(HWND, const TCHAR*);//Direct3Dの初期化関数のプロトタイプ宣言]
 HRESULT InitDinput(HWND hWnd);
 VOID FreeDx();//解放するための関数
 
+int window_width = 640;
+int window_hight = 480;
 
+int speed = 4;
 
 struct CUSTOMVERTEX {
 	float	x, y, z;	// 頂点座標
@@ -70,7 +71,7 @@ INT WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInst, LPSTR szStr, INT iCmdSh
 	RegisterClassEx(&wndclass);//wndclassのアドレス
 
 	hWnd = CreateWindow(szAppName, szAppName, WS_OVERLAPPEDWINDOW,
-		0, 0, 640, 480, NULL, NULL, hInst, NULL);
+		0, 0, window_width, window_hight, NULL, NULL, hInst, NULL);
 
 	ShowWindow(hWnd, SW_SHOW);//表示する
 	UpdateWindow(hWnd);
@@ -116,31 +117,31 @@ INT WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInst, LPSTR szStr, INT iCmdSh
 					pKeyDevice->GetDeviceState(sizeof(diks), &diks);
 					if (diks[DIK_LEFT] & 0x80)
 					{
-						v[0].x -= 4;
-						v[1].x -= 4;
-						v[2].x -= 4;
-						v[3].x -= 4;
+						v[0].x -= speed;
+						v[1].x -= speed;
+						v[2].x -= speed;
+						v[3].x -= speed;
 					}
 					if (diks[DIK_RIGHT] & 0x80)
 					{
-						v[0].x += 4;
-						v[1].x += 4;
-						v[2].x += 4;
-						v[3].x += 4;
+						v[0].x += speed;
+						v[1].x += speed;
+						v[2].x += speed;
+						v[3].x += speed;
 					}
 					if (diks[DIK_UP] & 0x80)
 					{
-						v[0].y -= 4;
-						v[1].y -= 4;
-						v[2].y -= 4;
-						v[3].y -= 4;
+						v[0].y -= speed;
+						v[1].y -= speed;
+						v[2].y -= speed;
+						v[3].y -= speed;
 					}
 					if (diks[DIK_DOWN] & 0x80)
 					{
-						v[0].y += 4;
-						v[1].y += 4;
-						v[2].y += 4;
-						v[3].y += 4;
+						v[0].y += speed;
+						v[1].y += speed;
+						v[2].y += speed;
+						v[3].y += speed;
 					}
 				}
 				//ピカチュウをかけといわれる

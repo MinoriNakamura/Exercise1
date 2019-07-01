@@ -24,6 +24,9 @@ CUSTOMVERTEX v[3] =
 {200, 200, 0.0f, 1.0f, 0x0ff00fff}
 };
 
+int window_width = 640;
+int window_hight = 480;
+
 //アプリケーションのエントリー関数
 INT WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInst, LPSTR szStr, INT iCmdShow)
 {
@@ -53,7 +56,7 @@ INT WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInst, LPSTR szStr, INT iCmdSh
 	RegisterClassEx(&wndclass);//wndclassのアドレス
 
 	hWnd = CreateWindow(szAppName, szAppName, WS_OVERLAPPEDWINDOW,
-		0, 0, 640, 480, NULL, NULL, hInst, NULL);
+		0, 0, window_width, window_hight, NULL, NULL, hInst, NULL);
 
 	ShowWindow(hWnd, SW_SHOW);//表示する
 	UpdateWindow(hWnd);
@@ -150,7 +153,7 @@ HRESULT InitD3d(HWND hWnd, const TCHAR* filepath)
 	//Direct３Dオブジェクトの作成
 	if (NULL == (pD3d = Direct3DCreate9(D3D_SDK_VERSION)))
 	{
-		MessageBox(0, "Direct3Dの作成に失敗しました", "", MB_OK);
+		MessageBox(0, "Direct3Dの作成に失敗しました","", MB_OK);
 		return E_FAIL;
 	}
 

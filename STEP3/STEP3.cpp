@@ -15,6 +15,9 @@ HRESULT BuildDxDevice(HWND, const TCHAR*);//プロトタイプ宣言
 void InitPresentParameters(HWND);
 HRESULT InitD3d(HWND, const TCHAR*);//Direct3Dの初期化関数のプロトタイプ宣言
 
+int window_width = 640;
+int window_hight = 480;
+
 struct CUSTOMVERTEX {
 	float	x, y, z;	// 頂点座標
 	float	rhw;	// 除算数
@@ -61,7 +64,7 @@ INT WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInst, LPSTR szStr, INT iCmdSh
 	RegisterClassEx(&wndclass);//wndclassのアドレス
 
 	hWnd = CreateWindow(szAppName, szAppName, WS_OVERLAPPEDWINDOW,
-		0, 0, 640, 480, NULL, NULL, hInst, NULL);
+		0, 0, window_width, window_hight, NULL, NULL, hInst, NULL);
 
 	ShowWindow(hWnd, SW_SHOW);//表示する
 	UpdateWindow(hWnd);

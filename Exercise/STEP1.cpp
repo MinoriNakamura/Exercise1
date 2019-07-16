@@ -1,41 +1,41 @@
-#include <windows.h>
+ï»¿#include <windows.h>
 
-LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);//ƒEƒBƒ“ƒhƒEƒvƒƒV[ƒWƒƒ[ŠÖ”‚Ìƒvƒƒgƒ^ƒCƒvéŒ¾
+LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ—ãƒ­ã‚·ãƒ¼ã‚¸ãƒ£ãƒ¼é–¢æ•°ã®ãƒ—ãƒ­ãƒˆã‚¿ã‚¤ãƒ—å®£è¨€
 
 int window_width = 640;
 int window_hight = 480;
 
-//ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚ÌƒGƒ“ƒgƒŠ[ŠÖ”
+//ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã®ã‚¨ãƒ³ãƒˆãƒªãƒ¼é–¢æ•°
 INT WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInst, LPSTR szStr, INT iCmdShow)
 {
 	HWND hWnd = NULL;
 	MSG msg;
-	//ƒEƒBƒ“ƒhƒE‚Ì‰Šú‰»
+	//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®åˆæœŸåŒ–
 	static char szAppName[] = "window";
 	WNDCLASSEX wndclass;
 
 	wndclass.cbSize = sizeof(wndclass);
-	wndclass.style = CS_HREDRAW | CS_VREDRAW;//H | V ‚ÍHorizontarl…•½ | Vertical‚’¼
-	//CS ‚Íclass style
-	wndclass.lpfnWndProc = WndProc;//’²‚×‚é
+	wndclass.style = CS_HREDRAW | CS_VREDRAW;//H | V ã¯Horizontarlæ°´å¹³ | Verticalå‚ç›´
+	//CS ã¯class style
+	wndclass.lpfnWndProc = WndProc;//èª¿ã¹ã‚‹
 	wndclass.cbClsExtra = 0;
 	wndclass.cbWndExtra = 0;
 	wndclass.hInstance = hInst;
 	wndclass.hIcon = LoadIcon(NULL, IDI_APPLICATION);
 	wndclass.hCursor = LoadCursor(NULL, IDC_ARROW);
 	wndclass.hbrBackground = (HBRUSH)GetStockObject(BLACK_BRUSH);
-	wndclass.lpszMenuName = NULL;//’²‚×‚é
+	wndclass.lpszMenuName = NULL;//èª¿ã¹ã‚‹
 	wndclass.lpszClassName = szAppName;
 	wndclass.hIconSm = LoadIcon(NULL, IDI_APPLICATION);
 
-	RegisterClassEx(&wndclass);//wndclass‚ÌƒAƒhƒŒƒX
+	RegisterClassEx(&wndclass);//wndclassã®ã‚¢ãƒ‰ãƒ¬ã‚¹
 
 	hWnd = CreateWindow(szAppName, szAppName, WS_OVERLAPPEDWINDOW,
 		0, 0, window_width, window_hight, NULL, NULL, hInst, NULL);
-	ShowWindow(hWnd, SW_SHOW);//•\¦‚·‚é
+	ShowWindow(hWnd, SW_SHOW);//è¡¨ç¤ºã™ã‚‹
 	UpdateWindow(hWnd);
 
-	//ƒƒbƒZ[ƒWƒ‹[ƒv
+	//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒ«ãƒ¼ãƒ—
 	timeBeginPeriod(1);
 	ZeroMemory(&msg, sizeof(msg));
 	while (msg.message != WM_QUIT)
@@ -53,10 +53,10 @@ INT WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrevInst, LPSTR szStr, INT iCmdSh
 	}
 	timeEndPeriod(1);
 	
-	//ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚ğI—¹‚·‚é
+	//ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã‚’çµ‚äº†ã™ã‚‹
 	return(INT)msg.wParam;
 }
-//ƒEƒBƒ“ƒhƒvƒƒV[ƒWƒƒŠÖ”
+//ã‚¦ã‚£ãƒ³ãƒ‰ãƒ—ãƒ­ã‚·ãƒ¼ã‚¸ãƒ£é–¢æ•°
 LRESULT CALLBACK WndProc(HWND hWnd, UINT iMsg, WPARAM wParam, LPARAM lParam) 
 {
 	switch (iMsg)
@@ -74,5 +74,5 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT iMsg, WPARAM wParam, LPARAM lParam)
 		break;
 	}
 	return DefWindowProc(hWnd, iMsg, wParam, lParam);
-	//returnŠÖ”ijGŠÖ”‚ğŒÄ‚Ño‚µA‚»‚Ì–ß‚è’l‚ğreturn‚·‚é
+	//returné–¢æ•°ï¼ˆï¼‰ï¼›é–¢æ•°ã‚’å‘¼ã³å‡ºã—ã€ãã®æˆ»ã‚Šå€¤ã‚’returnã™ã‚‹
 }
